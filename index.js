@@ -48,3 +48,21 @@ getPost(1)
 /* 🎯 Bonus: HOF con closure per memorizzare l'ultimo lancio
 Modifica la funzione in creaLanciaDado(), che restituisce una closure che memorizza l'ultimo risultato.
  Se il numero esce due volte di fila, stampa "Incredibile!". */
+
+const lanciaDado = () => {
+  return new Promise((resolve, reject) => {
+    console.log("Rolling dice...");
+    setTimeout(() => {
+      const diceBlock = Math.random() < 0.2;
+      if (diceBlock) {
+        reject("Dice got blocked!");
+      } else {
+        const result = Math.floor(Math.random() * 6) + 1;
+        resolve(result);
+      }
+    }, 3000);
+  });
+};
+lanciaDado()
+  .then((result) => console.log("Dice rolled:", result))
+  .catch((error) => console.error || error);
